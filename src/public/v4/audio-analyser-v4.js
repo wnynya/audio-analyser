@@ -256,7 +256,7 @@ function draw() {
     //let db = 10 ** ((2 * dataArray[i]) / 10 + a) / Math.log(f);
     //console.log(db);
     let ndb = normalizeDecibel(f, db);
-    ndb = ndb * 2 ** a;
+    ndb = ndb ** 0.5 * 10 ** a;
     //let hh = ndb;
 
     let c = ndb;
