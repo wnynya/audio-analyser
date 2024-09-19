@@ -11,4 +11,4 @@ app.disable('x-powered-by');
 
 app.use(express.static(path.resolve(__dirname, './public')));
 
-app.listen(80);
+app.listen(49934);
