@@ -1,0 +1,27 @@
+main {
+  display: flex;
+  justify-content: space-between;
+  background: black;
+}
+main .canvas {
+  width: calc(100vw / 3);
+  height: calc(100vw / 3);
+}
+
+.image {
+  display: flex;
+  justify-content: space-between;
+  background: black;
+}
+.image .canvas {
+  width: calc(100vw / 3);
+  height: calc(100vw / 3);
+}
+
+h2 {
+  padding: 1rem 0;
+}
+
+audio {
+  padding: 1rem 0;
+}

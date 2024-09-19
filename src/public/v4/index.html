@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+
+    <style>
+      canvas {
+        width: 1000px;
+        height: 500px;
+        border: solid 1px black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="2000" height="1000" id="oscilloscope"></canvas>
+
+    <br />
+    <label id="a-v" style="width: 100px; display: inline-block"></label>
+    <input id="a" type="range" value="3.65" min="-5" max="5" step="0.001" />
+
+    <script src="audio-analyser-v4.js"></script>
+  </body>
+</html>

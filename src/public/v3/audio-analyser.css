@@ -1,0 +1,665 @@
+* {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(100vh - 100px);
+}
+
+#files {
+  position: relative;
+  width: 15%;
+  min-width: 300px;
+  height: 100%;
+}
+#files .wrapper {
+  width: calc(100% - 26px);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-left: 13px;
+  margin-right: 13px;
+  display: flex;
+  flex-direction: column;
+}
+#files .dragbar {
+  position: absolute;
+  background-color: var(--gray-245);
+  z-index: 100000;
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+#files .info {
+  height: 180px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#files .info .name {
+  font-size: 12pt;
+  color: var(--th-red);
+  line-height: 20px;
+  padding-bottom: 5px;
+  border-bottom: solid 0.5px var(--th-green);
+}
+#files .info .ti {
+  padding-top: 5px;
+  font-size: 12pt;
+  color: var(--gray-128);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#files .list {
+  height: calc(100% - 240px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#files .list .audio {
+  width: calc(100% - 7px);
+  height: 29px;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.5px solid var(--bg);
+  margin-bottom: 2px;
+}
+#files .list .audio:hover {
+  background-color: var(--gray-245);
+  border: 0.5px solid var(--gray-245);
+}
+#files .list .audio.selected {
+  background-color: var(--gray-245);
+  border: 0.5px solid var(--th-red);
+}
+#files .list .audio.opened {
+  background-color: var(--bg);
+  color: var(--th-red);
+  border: 0.5px solid var(--th-green);
+}
+#files .list .audio.opened.selected {
+  background-color: var(--gray-245);
+  color: var(--th-red);
+  border: 0.5px solid var(--th-green);
+}
+#files .list .audio .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#files .list .audio .close {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#files .list .audio .close svg {
+  width: 10px;
+  height: 10px;
+  fill: var(--gray-128);
+}
+#files .list .audio .close:hover svg {
+  fill: var(--th-red);
+}
+#files .open {
+  height: 60px;
+}
+#files #file-open {
+  height: 59px;
+  align-items: center;
+  border: 0.5px solid var(--bg);
+  border-radius: 0px;
+  font-size: 12pt;
+  font-weight: 400;
+}
+#files #file-open:hover {
+  border: 0.5px solid var(--th-green);
+  box-shadow: none;
+}
+#analyser {
+  position: relative;
+  flex: 1;
+  height: 100%;
+}
+#analyser .noaudio {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22pt;
+  font-weight: 300;
+  color: var(--gray-128);
+}
+
+.audioanalyser {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--bg);
+}
+.audioanalyser .wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 0px 0px 0px 0px;
+  position: relative;
+  overflow: hidden;
+}
+.audioanalyser .wrapper.left {
+  width: calc(100% - 13px);
+  margin-left: 13px;
+}
+.audioanalyser .wrapper.right {
+  width: calc(100% - 13px);
+  margin-right: 13px;
+}
+.audioanalyser .wrapper.top {
+  height: calc(100% - 13px);
+  margin-top: 13px;
+}
+.audioanalyser .wrapper.bottom {
+  height: calc(100% - 13px);
+  margin-bottom: 13px;
+}
+.audioanalyser .wrapper.top.bottom {
+  height: calc(100% - 26px);
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+.audioanalyser .wrapper.left.right {
+  width: calc(100% - 26px);
+  margin-left: 13px;
+  margin-right: 13px;
+}
+
+.audioanalyser .leftside {
+  position: relative;
+  width: 15%;
+  height: 100%;
+}
+.audioanalyser .main {
+  position: relative;
+  width: auto;
+  flex: 1;
+  height: 100%;
+  resize: both;
+}
+.audioanalyser .rightside {
+  position: relative;
+  width: 55%;
+  height: 100%;
+  resize: both;
+}
+
+.audioanalyser .dragbar {
+  position: absolute;
+  background-color: var(--gray-245);
+  z-index: 100000;
+}
+.audioanalyser .dragbar.left {
+  top: 0;
+  left: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+.audioanalyser .dragbar.right {
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+.audioanalyser .dragbar.top {
+  top: -3px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: ns-resize;
+}
+.audioanalyser .dragbar.bottom {
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.audiostreamanalyser .info {
+  height: 30px;
+  line-height: 30px;
+  font-size: 22pt;
+  font-weight: 300;
+}
+.audiostreamanalyser .freq {
+  position: relative;
+  height: 20%;
+}
+.audiostreamanalyser .freq .label .logscalebtn {
+  font-size: 12pt;
+  line-height: 100%;
+  color: var(--gray-128);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.audiostreamanalyser .cpu {
+  position: relative;
+  height: 60%;
+}
+.audiostreamanalyser .cpu .wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.audiostreamanalyser .divbar {
+  width: 0.5px;
+  height: 100%;
+  background-color: var(--th-red);
+}
+.audiostreamanalyser .colset {
+  width: calc((100% / 3) - 16px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.audiostreamanalyser .colset .canvas {
+  position: relative;
+  height: calc(50% - 5px);
+  width: 100%;
+}
+.audiostreamanalyser .colset .canvas label {
+  font-size: 12pt;
+  line-height: 100%;
+  color: var(--gray-128);
+}
+.audiostreamanalyser .colset .canvas .name {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.audiostreamanalyser .colset .canvas .data {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.audiostreamanalyser .colset .canvas .ava {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+.audiofileanalyser .rightside .wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.audiofileanalyser .freqreg {
+  position: relative;
+  height: calc(20% - 13px);
+}
+.audiofileanalyser .freq226 {
+  position: relative;
+  height: 20%;
+}
+.audiofileanalyser .cpu {
+  position: relative;
+  height: 40%;
+}
+.audiofileanalyser .cpu .wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.audiofileanalyser .divbar {
+  width: 0.5px;
+  height: 100%;
+  background-color: var(--th-red);
+}
+.audiofileanalyser .colset {
+  width: calc((100% / 3) - 16px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.audiofileanalyser .colset .canvas {
+  position: relative;
+  height: calc(50% - 5px);
+  width: 100%;
+}
+.audiofileanalyser .colset .canvas label {
+  font-size: 10pt;
+  line-height: 100%;
+  color: var(--gray-128);
+}
+.audiofileanalyser .colset .canvas .name {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.audiofileanalyser .colset .canvas .data {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.audiofileanalyser .colset .canvas .ava {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+.audiofileanalyser .livefft {
+  position: relative;
+  height: 60%;
+  width: 100%;
+}
+.audiofileanalyser .livefft .wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.audiofileanalyser .livefft .currentfreq {
+  position: relative;
+  height: 50%;
+}
+.audiofileanalyser .livefft .currentfreq .elem .s1 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 22pt;
+  line-height: 30px;
+  font-weight: 300;
+}
+.audiofileanalyser .livefft .currentfreq .elem .s2 {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  font-size: 12pt;
+  line-height: 20px;
+  font-weight: 300;
+}
+.audiofileanalyser .livefft .currentfreqlog {
+  position: relative;
+  height: 50%;
+  flex: 1;
+}
+
+.audiofileanalyser .info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 10px;
+}
+.audiofileanalyser .info .currenttime {
+  height: 30px;
+  line-height: 30px;
+  font-size: 22pt;
+  font-weight: 300;
+}
+.audiofileanalyser .info .playbtn {
+  height: 30px;
+  line-height: 30px;
+  font-size: 22pt;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.audiofileanalyser .seek {
+  position: relative;
+  height: 40%;
+}
+.audiofileanalyser .seek .bar {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 40px);
+}
+.audiofileanalyser .seek .control {
+  width: 100%;
+  height: 30px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.audiofileanalyser .seek .control .btns {
+  display: flex;
+  flex-direction: row;
+}
+.audiofileanalyser .seek .control .btns .btn {
+  width: 28px;
+  height: 28px;
+  border: solid 0.5px var(--th-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--th-red);
+}
+.audiofileanalyser .seek .control .btns .btn svg {
+  width: 12px;
+  height: 12px;
+}
+.audiofileanalyser .seek .control .btns .btn svg,
+.audiofileanalyser .seek .control .btns .btn svg rect,
+.audiofileanalyser .seek .control .btns .btn svg polygon {
+  fill: var(--th-red);
+  pointer-events: none;
+}
+.audiofileanalyser .seek .control .volume {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.audiofileanalyser .seek .control .btns .playpause {
+  display: flex;
+  flex-direction: row;
+}
+.audiofileanalyser .seek .control .btns .playpause .btn {
+  margin-right: 10px;
+}
+.audiofileanalyser .seek .control .btns .playspeed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.audiofileanalyser .seek .control .btns .playspeedcurrent {
+  width: 90px;
+  height: 100%;
+  line-height: 30px;
+  font-size: 22pt;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+}
+.audiofileanalyser .seek .control .volume .number {
+  width: 90px;
+  height: 100%;
+  line-height: 30px;
+  font-size: 22pt;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+}
+.audiofileanalyser .seek .control .volume .slider {
+  position: relative;
+  flex: 1;
+  height: 100%;
+}
+.audiofileanalyser .seek .control .volume .slider .cbar {
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+.audiofileanalyser .seek .control .volume .slider .cbar .centerline {
+  width: 100%;
+  height: 0.5px;
+  background-color: var(--th-green);
+}
+.audiofileanalyser .seek .control .volume .slider .line {
+  pointer-events: none;
+  position: relative;
+}
+.audiofileanalyser .seek .control .volume .slider .line .currentline {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0.5px;
+  height: 100%;
+  background-color: var(--th-red);
+}
+.audiofileanalyser .seek #input-volume {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
+.audiofileanalyser .seek .graphic {
+  pointer-events: none;
+}
+.audiofileanalyser .seek .graphic .level,
+.audiofileanalyser .seek .graphic .freq {
+  width: 100%;
+  height: 50%;
+  position: relative;
+}
+.audiofileanalyser .seek .graphic .level .elem {
+  display: flex;
+  align-items: center;
+}
+.audiofileanalyser .seek .graphic .level .centerline {
+  width: 100%;
+  height: 0.5px;
+  background-color: var(--th-green);
+}
+.audiofileanalyser .seek .line {
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+.audiofileanalyser .seek .line .currentline,
+.audiofileanalyser .seek .line .seekbarline {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0.5px;
+  height: 100%;
+}
+.audiofileanalyser .seek .line .ltop {
+  width: 100%;
+  height: 50%;
+  background-color: var(--th-red);
+}
+.audiofileanalyser .seek .line .lbottom {
+  width: 100%;
+  height: 50%;
+  background-color: var(--th-green);
+}
+.audiofileanalyser .seek .line .top {
+  position: absolute;
+  top: 0px;
+  left: -15px;
+  width: 30px;
+  height: 0.5px;
+  background-color: var(--th-red);
+}
+.audiofileanalyser .seek .line .bottom {
+  position: absolute;
+  bottom: 0px;
+  left: -15px;
+  width: 30px;
+  height: 0.5px;
+  background-color: var(--th-green);
+}
+.audiofileanalyser .seek .seekbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.audiofileanalyser .seek #input-seekbar {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
+.dragbar.dragging {
+  background-color: var(--th) !important;
+}
+
+.main .exycanvas {
+  width: 100%;
+  height: 40%;
+  position: relative;
+}
+
+#control {
+  margin-top: 30px;
+}
+#control #audio {
+  width: 100%;
+  margin-bottom: 30px;
+}
+#control .twobtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+#control .twobtn .input {
+  width: calc(50% - 15px);
+  margin-bottom: 15px;
+}
+
+#info .time {
+  height: 30px;
+  line-height: 30px;
+  font-size: 22pt;
+}
+
+#drop {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+#an {
+  margin-bottom: 30px;
+}
+
+#audio-source {
+  width: 100%;
+  margin-top: 90px;
+}
+
+.set {
+  display: flex;
+  justify-content: space-between;
+  width: 420px;
+}
+.set .key,
+.set .val {
+  width: 50%;
+}
+
+.lr {
+  display: flex;
+  justify-content: space-between;
+}

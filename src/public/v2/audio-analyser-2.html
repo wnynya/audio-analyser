@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://wany.io/resource/amuject/audio-analyser2/audio-analyser.css"
+      type="text/css"
+    />
+    <title>Audio Analyser 2 — 와니네</title>
+  </head>
+  <body class="forcedark">
+    <header>
+      <div class="outwrapper wide">
+        <div class="inwrapper">
+          <h1>Audio Analyser 2</h1>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="files">
+        <div class="dragbar right"></div>
+        <div class="wrapper">
+          <div class="info">
+            <div class="name">&nbsp;</div>
+            <div class="ti">
+              <div class="time">0:00.000</div>
+              <div class="id">&nbsp;</div>
+            </div>
+          </div>
+          <div class="list"></div>
+          <div class="open">
+            <input
+              class="g245 submit btn"
+              id="file-open"
+              type="button"
+              value="open"
+            />
+          </div>
+        </div>
+      </div>
+      <div id="analyser">
+        <div class="layer noaudio">No audio</div>
+        <div class="layer main"></div>
+      </div>
+    </main>
+    <section id="control">
+      <div class="outwrapper wide">
+        <div class="inwrapper">
+          <h3>settings</h3>
+          <div class="twobtn">
+            <div class="input text">
+              <input
+                id="input-fftSize"
+                type="number"
+                value="1024"
+                placeholder="fftSize"
+                spellcheck="false"
+              />
+              <label>fftSize</label>
+              <div class="border"></div>
+            </div>
+            <div class="input text">
+              <input
+                id="input-cpu-alpha"
+                type="number"
+                value="-0.1"
+                placeholder="alpha"
+                spellcheck="false"
+              />
+              <label>alpha (livechange)</label>
+              <div class="border"></div>
+            </div>
+          </div>
+          <div class="twobtn">
+            <div class="input text">
+              <input
+                id="input-cpu-emo1gamma"
+                type="number"
+                value="0.5"
+                placeholder="gamma emo1"
+                spellcheck="false"
+              />
+              <label>gamma emo1 (livechange)</label>
+              <div class="border"></div>
+            </div>
+            <div class="input text">
+              <input
+                id="input-cpu-emo2gamma"
+                type="number"
+                value="0.25"
+                placeholder="gamma emo2"
+                spellcheck="false"
+              />
+              <label>gamma emo2 (livechange)</label>
+              <div class="border"></div>
+            </div>
+          </div>
+          <div class="twobtn">
+            <input
+              class="input"
+              id="input-cpu-resetemosum"
+              type="button"
+              value="reset emo ava"
+            />
+          </div>
+          <audio
+            id="audio-vocal"
+            src="https://wany.io/temp/vocal.mp3"
+            control
+          ></audio>
+        </div>
+      </div>
+    </section>
+    <script src="https://wany.io/resource/master/request.js"></script>
+    <script src="https://wany.io/resource/o/buffer/buffer-bundle.js"></script>
+    <script src="https://wany.io/resource/amuject/audio-analyser2/audio-analyser.js"></script>
+  </body>
+</html>
