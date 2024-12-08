@@ -256,7 +256,7 @@ function draw() {
     //let db = 10 ** ((2 * dataArray[i]) / 10 + a) / Math.log(f);
     //console.log(db);
     let ndb = normalizeDecibel(f, db);
-    ndb = ndb ** 0.5 * 10 ** a;
+    ndb = ndb ** 0.4 * 10 ** a;
     //let hh = ndb;
 
     let c = ndb;
@@ -281,13 +281,35 @@ function draw() {
 function mediaStart(stream) {
   let source = atx.createMediaStreamSource(stream);
   let gainNode = atx.createGain();
-  gainNode.gain.setValueAtTime(2.0, atx.currentTime);
+  gainNode.gain.setValueAtTime(1.0, atx.currentTime);
   // gainNode.gain.value = 2.0;
   source.connect(gainNode);
   //gainNode.connect(atx.destination);
   gainNode.connect(analyser);
   atx.resume();
 }
+/*
+let oscillator = atx.createOscillator();
+oscillator.connect(analyser);
+
+function oscillate(freq = 440) {
+  //oscillator.stop();
+  oscillator.disconnect();
+
+  oscillator = atx.createOscillator();
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(freq, atx.currentTime);
+  oscillator.connect(analyser);
+  oscillator.start();
+
+  atx.resume();
+}
+
+document.querySelector('#freq').addEventListener('mousemove', () => {
+  let freq = document.querySelector('#freq').value * 1;
+  document.querySelector('#freq-v').innerHTML = freq;
+  oscillate(freq);
+});*/
 
 navigator.mediaDevices
   .getUserMedia({ video: false, audio: true })
